@@ -22,10 +22,38 @@
                     <button class="bg-[#48c64c] py-2 px-6 sm:px-4 text-white rounded-sm cursor-pointer">Register Now →</button>
             </div>
 
-            <!--Menu burger-->
-            <div class="md:hidden pr-5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-            </div>
+      <!-- Menu burger -->
+<div class="md:hidden pr-5">
+  <button id="burger" class="focus:outline-none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+         viewBox="0 0 24 24" fill="none" stroke="#000000" 
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+</div>
+
+<!-- Menu mobile en overlay -->
+<div id="mobileMenu" 
+     class="hidden flex-col absolute top-14 right-5 bg-[#F5F7FA ] p-4 space-y-2 rounded-xl shadow-lg md:hidden">
+  <a href="#" class="block">Home</a>
+  <a href="#" class="block">Features</a>
+  <a href="#" class="block">Community</a>
+  <a href="#" class="block">Blog</a>
+  <a href="#" class="block">Pricing</a>
+</div>
+
+<script>
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  burger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+  });
+</script>
 
         </div>
 
@@ -381,7 +409,7 @@
         </div>
     </section>
 
-    <section class="bg-[#F5F7FA] h-[5vh]" >
+    <section class="bg-[#F5F7FA] h-[5vh] 2xl:h-[10vh]" >
         <div class="flex justify-center">
             <h1 class="text-3xl sm:text-5xl font-semibold opacity-50">
                 Pallentesque suscipit
