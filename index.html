@@ -18,42 +18,86 @@
             </div>
 
             <!--Button register pour <sm -->
-            <div class="block md:hidden pr-15">
+            <div class="block md:hidden pr-20 sm:pr-22">
                     <button class="bg-[#48c64c] py-2 px-6 sm:px-4 text-white rounded-sm cursor-pointer">Register Now →</button>
             </div>
 
-      <!-- Menu burger -->
+      <!-- Bouton burger -->
 <div class="md:hidden pr-5">
-  <button id="burger" class="focus:outline-none">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
-         viewBox="0 0 24 24" fill="none" stroke="#000000" 
+  <button id="burger" class="focus:outline-none relative w-8 h-8 flex items-center justify-center">
+    <!-- Icône burger -->
+    <svg id="icon-burger" xmlns="http://www.w3.org/2000/svg" 
+         class="absolute w-6 h-6 transition-all duration-300 ease-in-out transform scale-100 opacity-100"
+         viewBox="0 0 24 24" fill="none" stroke="#000000"
          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <line x1="3" y1="12" x2="21" y2="12"/>
       <line x1="3" y1="6" x2="21" y2="6"/>
       <line x1="3" y1="18" x2="21" y2="18"/>
     </svg>
+
+    <!-- Icône croix -->
+    <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" 
+         class="absolute w-6 h-6 transition-all duration-300 ease-in-out transform scale-0 opacity-0"
+         viewBox="0 0 24 24" fill="none" stroke="#000000"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
   </button>
 </div>
 
-<!-- Menu mobile en overlay -->
+
+
+<!-- Menu mobile -->
 <div id="mobileMenu" 
-     class="hidden flex-col absolute top-14 right-5 bg-[#F5F7FA ] p-4 space-y-2 rounded-xl shadow-lg md:hidden">
-  <a href="#" class="block">Home</a>
-  <a href="#" class="block">Features</a>
-  <a href="#" class="block">Community</a>
-  <a href="#" class="block">Blog</a>
-  <a href="#" class="block">Pricing</a>
+     class="max-h-0 overflow-hidden absolute top-14 left-0 w-full bg-[#F5F7FA] flex flex-col items-center space-y-2 py-0 
+            transition-all duration-500 ease-in-out md:hidden">
+  <a href="#" class="text-lg font-semibold">Home</a>
+  <a href="#" class="text-lg font-semibold">Features</a>
+  <a href="#" class="text-lg font-semibold">Community</a>
+  <a href="#" class="text-lg font-semibold">Blog</a>
+  <a href="#" class="text-lg font-semibold">Pricing</a>
 </div>
+
 
 <script>
   const burger = document.getElementById('burger');
   const mobileMenu = document.getElementById('mobileMenu');
+  const burgerIcon = burger.querySelector('svg');
 
   burger.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-    mobileMenu.classList.toggle('flex');
+    if (mobileMenu.classList.contains('max-h-0')) {
+      // Ouvrir menu
+      mobileMenu.classList.remove('max-h-0', 'py-0');
+      mobileMenu.classList.add('max-h-screen', 'py-4');
+
+      // Animation icône burger → croix
+      burgerIcon.classList.add('rotate-90', 'transition-transform', 'duration-500');
+      setTimeout(() => {
+        burgerIcon.innerHTML = `
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        `;
+      }, 150);
+    } else {
+      // Fermer menu
+      mobileMenu.classList.remove('max-h-screen', 'py-4');
+      mobileMenu.classList.add('max-h-0', 'py-0');
+
+      // Animation icône croix → burger
+      burgerIcon.classList.remove('rotate-90');
+      setTimeout(() => {
+        burgerIcon.innerHTML = `
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        `;
+      }, 150);
+    }
   });
 </script>
+
+
 
         </div>
 
@@ -430,7 +474,7 @@
         </div>
     </section>
 
-    <section class="bg-[#F5F7FA] pb-5 h-[10vh]" >
+    <section class="bg-[#F5F7FA] pb-5" >
         <div class="flex justify-center">
             <h1 class="text-3xl sm:text-5xl font-semibold opacity-50">
                 Pallentesque suscipit
